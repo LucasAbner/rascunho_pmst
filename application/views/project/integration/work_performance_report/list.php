@@ -48,9 +48,9 @@
 									<table class="table table-bordered table-striped" id="tableNB">
 										<thead>
 											<tr>
-												<th><?= $this->lang->line('responsible') ?></th>
-												<th><?= $this->lang->line('date') ?></th>
-												<th><?= $this->lang->line('main_activities') ?></th>
+												<th><?= $this->lang->line('wpr_responsible') ?></th>
+												<th><?= $this->lang->line('wpr_date') ?></th>
+												<th><?= $this->lang->line('wpr_main_activities') ?></th>
 
 												<th><?= $this->lang->line('btn-actions') ?></th>
 											</tr>
@@ -81,12 +81,12 @@
 																<!-- </form> -->
 															</div>
 
-															<!-- <div class="col-sm-3">
+															<div class="col-sm-3">
 																<form target="_blank" action="<?php echo base_url() ?>WorkPerformanceReport_PDF/pdfGenerator/<?php echo $work->work_performance_report_id; ?>" method="post">
 																	<input type="hidden" name="project_id" value="<?= $project_id ?>">
 																	<button type="submit" class="btn btn-success"><em class="glyphicon glyphicon-file"></em> to PDF<span class="hidden-xs"></span></button>
 																</form>
-															</div> -->
+															</div>
 														</div>
 													</td>
 												</tr>

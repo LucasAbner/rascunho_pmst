@@ -65,7 +65,7 @@ class ImageUploadController extends CI_Controller {
         $this->db->insert('upload', $data);
 				$this->session->set_userdata('previous_url', current_url());
 
-				// echo "<script>window.location.href='javascript:history.back(-2);'</script>";
+				echo "<script>window.location.href='javascript:history.back(-2);'</script>";
     }
 
     function images()

@@ -10,9 +10,8 @@ class ClosedProcurementDocumentation extends CI_Controller
         if (!$this->session->userdata('logged_in')) {
             redirect(base_url());
         }
-        
         $this->load->helper('url');
-        $this->load->model('Closed_Procurement_Documentation_model');
+        $this->load->model('Procurement_cpd_model');
         $this->load->model('view_model');
         $this->load->model('log_model');
         $this->load->helper('log_activity');
@@ -20,7 +19,7 @@ class ClosedProcurementDocumentation extends CI_Controller
 
         $this->lang->load('btn', 'english');
         // $this->lang->load('btn','portuguese-brazilian');
-        $this->lang->load('stakeholder', 'english');
+        $this->lang->load('closed_procurement_documentation', 'english');
 
         // $this->lang->load('manage-cost','portuguese-brazilian');
 
@@ -38,21 +37,20 @@ class ClosedProcurementDocumentation extends CI_Controller
             $this->load->view('frame/header_view');
             $this->load->view('frame/topbar');
             $this->load->view('frame/sidebar_nav_view', $project_id);
-            
-            $this->load->view('project/stakeholder/stakeholder_register/new', $dado);
+            $this->load->view('project/procurement/closed_procurement_documentation/new', $dado);
         } else {
             redirect(base_url());
         }
     }
 
-    public function delete($stakeholder_id)
+    public function delete($closed_procurement_documentation_id)
     {
         $project_id['project_id'] = $this->input->post('project_id');
         //$project_id['project_id'] = $project_id;
-        $query = $this->Stakeholder_model->delete($stakeholder_id);
+        $query = $this->Procurement_cpd_model->delete($closed_procurement_documentation_id);
         if ($query) {
-            insertLogActivity('delete', 'stakeholder register');
-            redirect('stakeholder/stakeholder-register/list/' . $project_id['project_id']);
+            insertLogActivity('delete', 'closed procurement documentation');
+            redirect('procurement/closed-procurement-documentation/list/' . $project_id['project_id']);
         }
     }
 
@@ -60,74 +58,54 @@ class ClosedProcurementDocumentation extends CI_Controller
     {
         $dado['project_id'] = $project_id;
 
-        $dado['stakeholder'] = $this->Stakeholder_model->getAll($project_id);
+        $dado['closed_procurement_documentation'] = $this->Procurement_cpd_model->getAll($project_id);
         $this->load->view('frame/header_view');
         $this->load->view('frame/topbar');
         $this->load->view('frame/sidebar_nav_view');
-        $this->load->view('project/stakeholder/stakeholder_register/list', $dado);
+        $this->load->view('project/procurement/closed_procurement_documentation/list', $dado);
     }
 
 
-    public function edit($stakeholder_id)
+    public function edit($closed_procurement_documentation_id)
     {
-        $query['stakeholder'] = $this->Stakeholder_model->get($stakeholder_id);
+        $query['closed_procurement_documentation'] = $this->Procurement_cpd_model->get($closed_procurement_documentation_id);
         $this->load->view('frame/header_view.php');
-        $this->load->view('frame/topbar');
         $this->load->view('frame/sidebar_nav_view.php');
-        $this->load->view('project/stakeholder/stakeholder_register/edit', $query);
+        $this->load->view('project/procurement/closed_procurement_documentation/edit', $query);
     }
 
-    public function update($stakeholder_id)
+    public function update($closed_procurement_documentation_id)
     {
-        $stakeholder['name'] = $this->input->post('name');
-        $stakeholder['type'] = $this->input->post('type');
-        $stakeholder['organization'] = $this->input->post('organization');
-        $stakeholder['position'] = $this->input->post('position');
-        $stakeholder['role'] = $this->input->post('role');
-        $stakeholder['responsibility'] = $this->input->post('responsibility');
-        $stakeholder['email'] = $this->input->post('email');
-        $stakeholder['phone_number'] = $this->input->post('phone_number');
-        $stakeholder['work_place'] = $this->input->post('work_place');
-        $stakeholder['essential_requirements'] = $this->input->post('essential_requirements');
-        $stakeholder['main_expectations'] = $this->input->post('main_expectations');
-        $stakeholder['interest_phase'] = $this->input->post('interest_phase');
-        $stakeholder['observations'] = $this->input->post('observations');
-        $stakeholder['project_id'] = $this->input->post('project_id');
-
-        $data['stakeholder'] = $stakeholder;
-        $query = $this->Stakeholder_model->update($data['stakeholder'], $stakeholder_id);
+        $closed_procurement_documentation['provider'] = $this->input->post('provider\'s name');
+        $closed_procurement_documentation['supplier_representative'] = $this->input->post('supplier representative');
+        $dclosed_procurement_documentation['main_deliveries'] = $this->input->post('main deliveries of this project');
+        $closed_procurement_documentation['closing_date'] = $this->input->post('closing_date');
+        $closed_procurement_documentation['project_id'] = $this->input->post('project_id');
+        $data['closed_procurement_documentation'] = $closed_procurement_documentation;
+        $query = $this->Procurement_cpd_model->update($data['closed_procurement_documentation'], $closed_procurement_documentation_id);
 
         if ($query) {
-            // insertLogActivity('update', 'stakeholder register');
-            $this->session->set_flashdata('update', 'Stakeholder Register has been successfully changed!');
-            redirect('stakeholder/stakeholder-register/list/' . $_SESSION['project_id']);
+            insertLogActivity('update', 'closed procurement documentation register');
+            $this->session->set_flashdata('success', 'Closed Procurement Documentation has been successfully changed!');
+            redirect('procurement/closed-procurement-documentation/list/' . $closed_procurement_documentation['project_id']);
         }
     }
 
 
     public function insert($project_id)
     {
-        $stakeholder['name'] = $this->input->post('name');
-        $stakeholder['type'] = $this->input->post('closing_');
-        $stakeholder['organization'] = $this->input->post('organization');
-        $stakeholder['position'] = $this->input->post('position');
-        $stakeholder['role'] = $this->input->post('role');
-        $stakeholder['responsibility'] = $this->input->post('responsibility');
-        $stakeholder['email'] = $this->input->post('email');
-        $stakeholder['phone_number'] = $this->input->post('phone_number');
-        $stakeholder['work_place'] = $this->input->post('work_place');
-        $stakeholder['essential_requirements'] = $this->input->post('essential_requirements');
-        $stakeholder['main_expectations'] = $this->input->post('main_expectations');
-        $stakeholder['interest_phase'] = $this->input->post('interest_phase');
-        $stakeholder['observations'] = $this->input->post('observations');
-        $stakeholder['project_id'] = $project_id;
+        $closed_procurement_documentation['provider'] = $this->input->post('provider\'s name');
+        $closed_procurement_documentation['supplier_representative'] = $this->input->post('supplier representative');
+        $closed_procurement_documentation['main_deliveries'] = $this->input->post('main deliveries of this project');
+        $closed_procurement_documentation['closing_date'] = $this->input->post('closing_date');
+        $closed_procurement_documentation['project_id'] = $_SESSION["project_id"];
 
-        $query = $this->Stakeholder_model->insert($stakeholder);
+        $query = $this->Procurement_cpd_model->insert($closed_procurement_documentation);
 
         if ($query) {
-            insertLogActivity('insert', 'stakeholder register');
-            $this->session->set_flashdata('success', 'Stakeholder Register has been successfully created!');
-            redirect('stakeholder/stakeholder-register/list/' . $stakeholder['project_id']);
+            insertLogActivity('insert', 'closed procurement documentation');
+            $this->session->set_flashdata('success', 'Closed Procurement Documentation has been successfully created!');
+            redirect('procurement/closed-procurement-documentation/list/' . $closed_procurement_documentation['project_id']);
         }
     }
 }

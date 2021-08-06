@@ -20,6 +20,8 @@ class DeliverableStatus extends CI_Controller
         $this->lang->load('btn', 'english');
         // $this->lang->load('btn','portuguese-brazilian');
         $this->lang->load('delivery_acceptance_term', 'english');
+        $this->load->model('Stakeholder_model');
+		
 
         // $this->lang->load('manage-cost','portuguese-brazilian');
 
@@ -34,6 +36,7 @@ class DeliverableStatus extends CI_Controller
 
 
         if (count($project['dados']) > 0) {
+            $dado['stakeholders'] = $this->Stakeholder_model->getAll($_SESSION['project_id']);
             $dado['project_id'] = $project_id;
             $this->load->view('frame/header_view');
             $this->load->view('frame/topbar');
@@ -93,6 +96,7 @@ class DeliverableStatus extends CI_Controller
 
         if ($query) {
             insertLogActivity('update', 'deliverable status');
+            $this->session->set_flashdata('success', 'Deliverable Status has been successfully changed!');
             redirect('integration/deliverable-status/list/' . $delivery_acceptance_term['project_id']);
         }
     }
@@ -111,6 +115,7 @@ class DeliverableStatus extends CI_Controller
 
         if ($query) {
             insertLogActivity('insert', 'deliverable status');
+            $this->session->set_flashdata('success', 'Deliverable Status has been successfully created!');
             redirect('integration/deliverable-status/list/' . $delivery_acceptance_term['project_id']);
         }
     }

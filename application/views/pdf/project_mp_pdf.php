@@ -51,7 +51,7 @@ $pdf->AddPage();
 $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2,
  'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
 
- 
+ extract($project_mp);
 // Set some content to print
 // $project_guidelines = str_replace('
 // ', '<br>', $project_guidelines);
@@ -108,10 +108,7 @@ $configuration_lang = $this->lang->line('pmp_configuration_mp'); // $configurati
 $performance_lang = $this->lang->line('pmp_performance'); // $performance
 $lifecycle_lang = $this->lang->line('pmp_lifecycle'); // $project_lifecycle
 $development_lang = $this->lang->line('pmp_development'); // $development
-
-
-extract($amostra);
-$protocolo = 'LV' . $amostra_id . date("/Y\ ", strtotime($data));
+$key_lang = $this->lang->line('pmp_key_review'); // $key_review
 
 
 

@@ -39,6 +39,7 @@
 						/* outline: 0; */
 						resize: none;
 						line-height: 20px;
+
 					}
 				</style>
 				<div class="row">
@@ -62,7 +63,9 @@
 								<div class="panel-body">
 									<div class="col-sm-3 nopadding" style="min-height: 20px;">
 										<div class="form-group">
+											<div class="input-group">
 												<label for="question_description">Aspects</label>
+											</div>
 										</div>
 									</div>
 
@@ -84,7 +87,10 @@
 
 									<div class="col-sm-5 nopadding">
 										<div class="form-group">
+											<div class="input-group">
 												<label for="question_description">Comments</label>
+
+											</div>
 										</div>
 									</div>
 
@@ -112,6 +118,7 @@
 														</div>
 													</div>
 												</div>
+
 												<div class="col-sm-1 nopadding">
 													<div class="form-group"> <input onchange="calcula(<?php echo $count ?>)" onkeypress="return somenteNumeros(event)" type="text" maxlength="2" class="form-control elasticteste" id="weight[<?php echo $count ?>]" name="weight[]" value=<?php echo $risk->weight ?>></div>
 												</div>
@@ -121,7 +128,7 @@
 												<div class="col-sm-1 nopadding">
 													<div class="form-group"><input type="text" class="form-control elasticteste" id="score[<?php echo $count ?>]" name="score[]" value=<?php echo $risk->score ?> readonly></div>
 												</div>
-												<div class="col-sm-5 nopadding">
+												<div class="col-sm-4 nopadding">
 													<div class="form-group">
 														<div class="input-group">
 															<textarea style="width:380px;text-align:left;" class="form-control elasticteste" id="comments[<?php echo $count ?>]" name="comments[]" value=<?php echo $risk->comments ?> maxlength="255"><?php echo $risk->comments ?></textarea>
@@ -144,6 +151,7 @@
 
 									</form>
 
+
 									<form action="<?php echo base_url('project/'); ?><?php echo  $_SESSION['project_id']; ?>">
 										<button class="btn btn-lg btn-info pull-left"> <i class="glyphicon glyphicon-chevron-left"></i> <?= $this->lang->line('btn-back') ?></button>
 									</form>
@@ -161,6 +169,8 @@
 	var count = parseFloat(<?php echo $count; ?>);
 	window.onload = initPage();
 
+	
+
 	function initPage() {
 
 		for (var j = count - 1; j > 0; j--) {
@@ -175,7 +185,7 @@
 		// total = parseFloat(total.toFixed(1));
 
 		// if (total != 0) {
-			document.getElementById("gprc_1").textContent = 'Total Score: ' + total.toFixed(1) + '%';
+			document.getElementById("gprc_1").textContent = 'Total Score: ' + total + '%';
 		// }
 
 	}
@@ -218,7 +228,7 @@
 		}
 
 		// document.getElementById("gprc_1").textContent = 'Total Score: ' + total + '%';
-		$(".gprc_1").text('Total Score: ' + total.toFixed(1) + '%');
+		$(".gprc_1").text('Total Score: ' + total + '%');
 	}
 
 

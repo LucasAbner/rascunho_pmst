@@ -27,11 +27,12 @@
 					</div>
 				<?php endif; ?>
 				<!-- /.row -->
+
 				<style>
 					@media (min-width: 1200px) {
 						.texttd {
 							display: block;
-							width: 300px;
+							width: 170px;
 							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
@@ -41,7 +42,7 @@
 					@media (max-width: 1199px) {
 						.texttd {
 							display: block;
-							width: 150px;
+							width: 90px;
 							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
@@ -51,7 +52,7 @@
 					@media (max-width: 1160px) {
 						.texttd {
 							display: block;
-							width: 80px;
+							width: 85px;
 							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
@@ -61,7 +62,47 @@
 					@media (max-width: 900px) {
 						.texttd {
 							display: block;
-							width: 50px;
+							width: 100px;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+						}
+					}
+
+					@media (min-width: 1200px) {
+						.texttd2 {
+							display: block;
+							width: 650px;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+						}
+					}
+
+					@media (max-width: 1199px) {
+						.texttd2 {
+							display: block;
+							width: 600px;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+						}
+					}
+
+					@media (max-width: 1160px) {
+						.texttd2 {
+							display: block;
+							width: 500px;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+						}
+					}
+
+					@media (max-width: 900px) {
+						.texttd2 {
+							display: block;
+							width: 100px;
 							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
@@ -74,13 +115,14 @@
 						<div class="panel-body">
 							<h1 class="page-header">
 
-								Quality Checklist
+								<?= $this->lang->line('llr_title')  ?>
 
 							</h1>
 
 							<div class="row">
-								<div class="col-lg-3">
-									<button class="btn btn-info btn-lg" onclick="window.location.href='<?php echo base_url() ?>quality/quality-checklist/new/<?php echo $project_id ?>'"><i class="fa fa-plus-circle"></i> New Quality Checklist Item</button>
+								<div class="col-lg-12">
+
+									<button class="btn btn-info btn-lg" onclick="window.location.href='<?php echo base_url() ?>integration/lesson-learned-register/new/<?php echo $project_id ?>'"><i class="fa fa-plus-circle"></i> <?= $this->lang->line('btn-new') ?></button>
 								</div>
 							</div>
 
@@ -88,38 +130,36 @@
 							<div class="row">
 								<div class="col-lg-12">
 
-									<table class="table table-bordered table-striped" id="table_quality_check">
+									<table class="table table-bordered table-striped" id="table_integration">
 										<thead>
 											<tr>
-												<th>Verified Product, Process or Activity</th>
-												<th>Guidelines / Comments</th>
-												<th>Responsible for Verification</th>
-												<th style="text-align:center">Verification date</th>
+												<th class="text-center">#</th>
+												<th><?= $this->lang->line('llr_stakeholder') ?></th>
+												<th><?= $this->lang->line('llr_date') ?></th>
+												<th><?= $this->lang->line('llr_description') ?></th>
 												<th><?= $this->lang->line('btn-actions') ?></th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
-											foreach ($quality_check as $item) {
+											foreach ($lesson_learned_register as $item) {
 											?>
-												<tr>
-													<td><span class="texttd"><?= $item->verified ?></span></td>
-													<td><span class="texttd"><?php echo $item->guidelines; ?></span></td>
-													<td><span class="texttd"><?php echo $item->responsible; ?></span></td>
-													<td style="display: fixed;min-width: 15px;text-align:center"><?php echo $item->date; ?></td>
-													
-													
+												<tr dados='<?= json_encode($item); ?>'>
+													<td class="moreInformationTable"></td>
+													<td><span class="texttd"><?php echo $item->stakeholder ?></span></td>
+													<td><span class="texttd"><?php echo $item->date ?></span></td>
+													<td><span class="texttd"><?php echo $item->description ?></span></td>
 													<td style="display: fixed;min-width: 100px;">
 														<div class="row center">
 															<div class="col-sm-4">
-																<form action="<?php echo base_url() ?>quality/quality-checklist/edit/<?php echo $item->quality_checklist_id; ?>" method="post">
+																<form action="<?php echo base_url() ?>integration/lesson-learned-register/edit/<?php echo $item->lesson_learned_register_id; ?>" method="post">
 																	<input type="hidden" name="project_id" value="<?= $item->project_id ?>">
 																	<button type="submit" class="btn btn-default"><em class="fa fa-pencil"></em><span class="hidden-xs"></span></button>
 																</form>
 															</div>
 
 															<div class="col-sm-4">
-																<button type="submit" class="btn btn-danger" onclick="deletar(<?= $item->project_id ?>, <?= $item->quality_checklist_id; ?>)"><em class="fa fa-trash"></em><span class="hidden-xs"></span></button>
+																<button type="submit" class="btn btn-danger" onclick="deletar(<?= $item->project_id ?>, <?= $item->lesson_learned_register_id; ?>)"><em class="fa fa-trash"></em><span class="hidden-xs"></span></button>
 															</div>
 														</div>
 													</td>
@@ -164,18 +204,40 @@
 	let table;
 
 	$(document).ready(function() {
-		table = $('#table_quality_check').DataTable({
+		table = $('#table_stake').DataTable({
 			"columns": [{
-					"data": "verified "
+					"data": "#",
+					"orderable": false
 				},
 				{
-					"data": "guidelines"
+					"data": "stakeholder who identified"
 				},
 				{
-					"data": "responsible"
+					"data": "identification date"
 				},
 				{
-					"data": "date"
+					"data": "situation description"
+				},
+				{
+					"data": "category"
+				},
+				{
+					"data": "who could be interested"
+				},
+				{
+					"data": "status"
+				},
+				{
+					"data": "impact"
+				},
+				{
+					"data": "recommendations"
+				},
+				{
+					"data": "associated life cycle"
+				},
+				{
+					"data": "associated knowledge area"
 				},
 				{
 					"data": "btn-actions",
@@ -187,10 +249,58 @@
 			]
 		});
 	});
+
+	$("#table_integration tbody td.moreInformationTable").on("click", function() {
+		let element = jQuery($(this)[0].parentNode);
+		let tr = element.closest('tr');
+		let row = table.row(tr);
+		console.log(element)
+		let dados = JSON.parse(element.attr("dados"));
+
+		if (row.child.isShown()) {
+			row.child.hide();
+			tr.removeClass('shown');
+		} else {
+			row.child(format(dados)).show();
+			tr.addClass('shown');
+		}
+	});
+
+	function format(dados) {
+		var nome;
+		if (dados.role == 0) {
+			nome = 'Client';
+		} else if (dados.role == 1) {
+			nome = 'Team';
+		} else if (dados.role == 2) {
+			nome = 'Provider';
+		} else if (dados.role == 3) {
+			nome = 'Project Manager';
+		} else if (dados.role == 4) {
+			nome = 'Sponsor';
+		} else(dados.role == 5)
+		nome = 'Others';
+
+
+		return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+			'<tr>' +
+			'<td> <span style="font-weight:bold;" ><?= $this->lang->line('shr_role') ?> : </span> </td>' +
+			'<td>' + nome + '</td>' +
+			'</tr>' +
+			'<tr>' +
+			'<td><span style="font-weight:bold;" ><?= $this->lang->line('shr_work_place') ?>: </span> </td>' +
+			'<td class="texttd2">' + dados.work_place + '</td>' +
+			'</tr>' +
+			'<tr>' +
+			'<td><span style="font-weight:bold;"><?= $this->lang->line('shr_main_expectations') ?>: </span> </td>' +
+			'<td class="texttd2">' + dados.main_expectations + '</td>' +
+			'</tr>' +
+			'</table>';
+	}
 </script>
 
 <script type="text/javascript">
-	function deletar(idProjeto, id) {
+	function deletar(idProjeto, closed_procurement_documentation_id) {
 		//e.preventDefault();
 		alertify.confirm('Do you agree?').setting({
 			'labels': {
@@ -200,9 +310,10 @@
 			'reverseButtons': false,
 			'onok': function() {
 
-				console.log(`Passei o ${idProjeto} e ${id}`);
 
-				$.post("<?php echo base_url() ?>quality/quality-checklist/delete/" + id );
+				$.post("<?php echo base_url() ?>integration/lesson-learned-register/delete/" + closed_procurement_documentation_id, {
+					project_id: idProjeto,
+				});
 				// location.reload();
 				window.location.reload();
 				alertify.success('You agree.');

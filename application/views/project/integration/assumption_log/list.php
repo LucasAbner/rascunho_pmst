@@ -79,10 +79,10 @@
 							</h1>
 
 							<div class="row">
-								<div class="col-lg-2">
+								<div class="col-lg-3">
 									<button class="btn btn-info btn-lg" onclick="window.location.href='<?php echo base_url() ?>integration/assumption-log/new-assumption/<?php echo $project_id ?>'"><i class="fa fa-plus-circle"></i> New Assumption</button>
 								</div>
-								<div class="col-lg-2">
+								<div class="col-lg-3">
 									<button class="btn btn-info btn-lg" onclick="window.location.href='<?php echo base_url() ?>integration/assumption-log/new-constraint/<?php echo $project_id ?>'"><i class="fa fa-plus-circle"></i> New Constraint</button>
 								</div>
 							</div>

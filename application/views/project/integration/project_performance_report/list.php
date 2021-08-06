@@ -45,9 +45,10 @@
 									<table class="table table-bordered table-striped" id="tableNB">
 										<thead>
 											<tr>
-												<th><?= $this->lang->line('date') ?></th>
-												<th><?= $this->lang->line('current_performance_analysis') ?></th>
-
+												<th><?= $this->lang->line('ppr_date') ?></th>
+												<th><?= $this->lang->line('ppr_current_performance_analysis') ?></th>
+												<th><?= $this->lang->line('ppr_planned_forecasts') ?></th>
+												<th><?= $this->lang->line('ppr_work_completed_during_the_period')?></th>
 												<th><?= $this->lang->line('btn-actions') ?></th>
 											</tr>
 										</thead>
@@ -58,6 +59,8 @@
 												<tr dados='<?= json_encode($report); ?>'>
 													<td><?php echo $report->date; ?></td>
 													<td><?php echo $report->current_performance_analysis; ?></td>
+													<td><?php echo $report->planned_forecasts; ?></td>
+													<td><?php echo $report->work_completed_during_the_period; ?></td>
 
 													<td>
 														<div class="row center">
@@ -75,12 +78,12 @@
 																<!-- </form> -->
 															</div>
 
-															<!-- <div class="col-sm-3">
+															<div class="col-sm-3">
 																<form target="_blank" action="<?php echo base_url() ?>ProjectPerformanceReport_PDF/pdfGenerator/<?php echo $report->id; ?>" method="post">
 																	<input type="hidden" name="project_id" value="<?= $project_id ?>">
 																	<button type="submit" class="btn btn-success"><em class="glyphicon glyphicon-file"></em> to PDF<span class="hidden-xs"></span></button>
 																</form>
-															</div> -->
+															</div>
 														</div>
 													</td>
 												</tr>

@@ -176,16 +176,20 @@ $route['integration/change-log/delete/(:num)'] = "ChangeLog/delete/$1";
 
 $route['integration/project-closure/new/(:num)'] = "ProjectClosure/new/$1";
 $route['integration/project-closure/edit/(:num)'] = "ProjectClosure/edit/$1";
-$route['integration/project-closure/insert'] = "ProjectClosure/insert";
-$route['integration/project-closure/update'] = "ProjectClosure/update";
+$route['integration/project-closure/insert/(:num)'] = "projectclosure/insert/$1";
+$route['integration/project-closure/update/(:num)'] = "projectclosure/update/$1";
 
-$route['integration/assumption-log/new/(:num)'] = "AssumptionLog/new/$1";
-$route['integration/assumption-log/edit/(:num)'] = "AssumptionLog/edit/$1";
-$route['integration/assumption-log/list/(:num)'] = "AssumptionLog/list/$1";
-$route['integration/assumption-log/insert'] = "AssumptionLog/insert";
-$route['integration/assumption-log/update'] = "AssumptionLog/update";
-$route['integration/assumption-log/delete/(:num)'] = "AssumptionLog/delete/$1";
+$route['integration/lesson-learned-register/new/(:num)'] = "LessonLearnedRegister/new/$1";
+$route['integration/lesson-learned-register/edit/(:num)'] = "LessonLearnedRegister/edit/$1";
+$route['integration/lesson-learned-register/list/(:num)'] = "LessonLearnedRegister/list/$1";
+$route['integration/lesson-learned-register/insert/(:num)'] = "LessonLearnedRegister/insert/$1";
+$route['integration/lesson-learned-register/update/(:num)'] = "LessonLearnedRegister/update/$1";
+$route['integration/lesson-learned-register/delete/(:num)'] = "LessonLearnedRegister/delete/$1";
 
+$route['integration/final-report/new/(:num)'] = "FinalReport/new/$1";
+$route['integration/final-report/edit/(:num)'] = "FinalReport/edit/$1";
+$route['integration/final-report/insert'] = "FinalReport/insert";
+$route['integration/final-report/update'] = "FinalReport/update";
 
 $route['scope/requirements-mp/new/(:num)'] = "RequirementsManagementPlan/new/$1";
 $route['scope/requirements-mp/edit/(:num)'] = "RequirementsManagementPlan/edit/$1";
@@ -226,6 +230,19 @@ $route['schedule/activity-list/insert/(:num)'] = "ActivityList/insert/$1";
 $route['schedule/activity-list/update/(:num)'] = "ActivityList/update/$1";
 $route['schedule/activity-list/delete/(:num)'] = "ActivityList/delete/$1";
 
+$route['schedule/activity-list/milestone/insert'] = "ActivityList/insertMilestone";
+$route['schedule/activity-list/milestone/delete/(:num)'] = "ActivityList/deleteMilestone/$1";
+
+$route['schedule/activity-list/project-phase/insert']= "ActivityList/insertPhase";
+$route['schedule/activity-list/project-phase/delete/(:num)']= "ActivityList/deletePhase/$1";
+
+$route['procurement/closed-procurement-documentation/new/(:num)'] = "ClosedProcurementDocumentation/new/$1";
+$route['procurement/closed-procurement-documentation/edit/(:num)'] = "ClosedProcurementDocumentation/edit/$1";
+$route['procurement/closed-procurement-documentation/list/(:num)'] = "ClosedProcurementDocumentation/list/$1";
+$route['procurement/closed-procurement-documentation/insert/(:num)'] = "ClosedProcurementDocumentation/insert/$1";
+$route['procurement/closed-procurement-documentation/update/(:num)'] = "ClosedProcurementDocumentation/update/$1";
+$route['procurement/closed-procurement-documentation/delete/(:num)'] = "ClosedProcurementDocumentation/delete/$1";
+
 $route['schedule/earned-value-management/new/(:num)'] = "EVM/new/$1";
 $route['schedule/earned-value-management/edit/(:num)'] = "EVM/edit/$1";
 $route['schedule/earned-value-management/list/(:num)'] = "EVM/list/$1";
@@ -249,8 +266,9 @@ $route['schedule/resource-requirements/delete/(:num)'] = "ResourceRequirements/d
 
 $route['schedule/duration-estimates/new/(:num)'] = "DurationEstimates/new/$1";
 $route['schedule/duration-estimates/edit/(:num)'] = "DurationEstimates/edit/$1";
+$route['schedule/duration-estimates/read/(:num)'] = "DurationEstimates/read/$1";
 $route['schedule/duration-estimates/list/(:num)'] = "DurationEstimates/list/$1";
-$route['schedule/duration-estimates/insert/(:num)'] = "DurationEstimates/insert/$1";
+$route['schedule/duration-estimates/insert'] = "DurationEstimates/insert";
 $route['schedule/duration-estimates/update/(:num)'] = "DurationEstimates/update/$1";
 $route['schedule/duration-estimates/delete/(:num)'] = "DurationEstimates/delete/$1";
 
@@ -346,6 +364,13 @@ $route['procurement/procurement-statement-of-work/insert/(:num)'] = "Procurement
 $route['procurement/procurement-statement-of-work/update/(:num)'] = "ProcurementStatementOfWork/update/$1";
 $route['procurement/procurement-statement-of-work/delete/(:num)'] = "ProcurementStatementOfWork/delete/$1";
 
+
+$route['procurement/lesson-learned-register/new/(:num)'] = "LessonLearnedRegister/new/$1";
+$route['procurement/lesson-learned-register/edit/(:num)'] = "LessonLearnedRegister/edit/$1";
+$route['procurement/lesson-learned-register/list/(:num)'] = "LessonLearnedRegister/list/$1";
+$route['procurement/lesson-learned-register/insert/(:num)'] = "LessonLearnedRegister/insert/$1";
+$route['procurement/lesson-learned-register/update/(:num)'] = "LessonLearnedRegister/update/$1";
+$route['procurement/lesson-learned-register/delete/(:num)'] = "LessonLearnedRegister/delete/$1";
 
 
 $route['integration/assumption-log/new-assumption/(:num)'] = "AssumptionLog/new_assumption/$1";
