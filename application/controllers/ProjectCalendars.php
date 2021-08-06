@@ -46,6 +46,7 @@ class ProjectCalendars extends CI_Controller
 		$query['activity'] = $this->Activity_model->get($project_id);
 
 		$this->load->view('frame/header_view.php');
+		$this->load->view('frame/topbar');
 		$this->load->view('frame/sidebar_nav_view.php');
 		$this->load->view('project/schedule/resource_calendar/edit', $query);
 	}
@@ -66,7 +67,7 @@ class ProjectCalendars extends CI_Controller
 
 		if ($query) {
 			insertLogActivity('update', 'project calendars');
-			$this->session->set_flashdata('success', 'project Calendars has been successfully changed!');
+			$this->session->set_flashdata('success', 'Project Calendars has been successfully changed!');
 			redirect('schedule/project-calendars/list/' . $activity['project_id']);
 		}
 	}

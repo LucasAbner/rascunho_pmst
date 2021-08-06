@@ -262,8 +262,6 @@
 									</div>
 								</div>
 
-								
-
 								<div class="col-lg-12">
 									<button id="stakeholder-submit" type="submit" value="Save" class="btn btn-lg btn-success pull-right">
 										<i class="glyphicon glyphicon-ok"></i> <?= $this->lang->line('btn-save') ?>
@@ -287,9 +285,6 @@
 <script src="<?= base_url() ?>assets/js/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-
-								
-
 	//////////////////////////////////
 	// Start Date & End Date
 	//////////////////////////////////

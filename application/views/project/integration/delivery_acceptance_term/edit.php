@@ -38,7 +38,7 @@
 								<input type="hidden" id="project_id" name="project_id" value="<?php echo $project_id; ?>">
 
 
-								<!-- <div class=" col-lg-6 form-group">
+								<div class=" col-lg-6 form-group">
 									<label for="validator_name"><?= $this->lang->line('ds_validator_name') ?></label>
 									<span class="ds_1">2000</span><?= $this->lang->line('character') ?>
 									<a class="btn-sm btn-default" id ="ds_tp_1" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('validator_name_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
@@ -46,18 +46,7 @@
 										<input id="ds_txt_1" type="text" name="validator_name" class="form-control input-md" value="<?php echo $validator_name; ?>" onkeyup = "limite_textarea(this.value, 'ds_1')" maxlength="2000" oninput="eylem(this, this.value)" required="false">
 										
 									</div>
-								</div> -->
-
-								<div class="col-lg-4 form-group">
-										<label><?= $this->lang->line('ds_validator_name') ?></label>
-										<select name="validator_name" size="1" class="form-control" tabindex="1">
-											<?php foreach ($stakeholders as $s) { ?>
-												<option value="<?= $s->stakeholder_id; ?>"
-												<?php if ($validator_name == $t->validator_name) echo 'selected'; ?>>
-													<?= $s->name; ?></option>
-											<?php  } ?>
-										</select>
-									</div>
+								</div>
 
 								<div class=" col-lg-6 form-group">
 									<label for="role"><?= $this->lang->line('ds_role') ?></label>
@@ -115,12 +104,13 @@
 </body>
 <script src="<?= base_url() ?>assets/js/jquery-1.11.1.js" type="text/javascript"></script>
 <script type="text/javascript">
-	for (var i = 1; i <= 5; i++) {
+	for (var i = 1; i < 5; i++) {
 		if (document.getElementById("ds_tp_" + i).title == "") {
 			document.getElementById("ds_tp_" + i).hidden = true;
 		}
-		limite_textarea(document.getElementById("ds_txt_" + i).value, "ds_" + i);
+		
 	}
+	limite_textarea(document.getElementById("ds_txt_" + i).value, "ds_" + i);
 	function limite_textarea(valor, txt) {
 		var limite = 2000;
 		var caracteresDigitados = valor.length;

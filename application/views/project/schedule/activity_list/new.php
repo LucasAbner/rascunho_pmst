@@ -42,25 +42,13 @@
 										</div>
 									</div>
 
-									<!-- <div class=" col-lg-4 form-group">
+									<div class=" col-lg-4 form-group">
 										<label for="milestone"><?= $this->lang->line('al_milestone') ?></label>
 										<a class="btn-sm btn-default" id="al_tp_2" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('al_milestone_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
 										<span class="al_2">2000</span><?= $this->lang->line('character') ?>
 										<div>
 										<input id="al_txt_2" type="text" name="milestone" class="form-control input-md" onkeyup = "limite_textarea(this.value, 'al_2')" maxlength="2000" oninput="eylem(this, this.value)" required="false">
 										</div>
-									</div> -->
-
-									<div class="col-lg-4 form-group">
-										<label><?= $this->lang->line('al_milestone') ?></label>
-										<a class="btn-sm btn-default" id="al_tp_2" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('al_milestone_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
-										<select name="milestone" size="1" class="form-control" tabindex="1" required>
-										<option selected="selected" disabled="disabled" value=""> Selecione </option>
-											<?php foreach ($milestone as $item) { ?>
-												<option value="<?= $item->milestone_id; ?>">
-													<?= $item->milestone; ?></option>
-											<?php  } ?>
-										</select>
 									</div>
 
 									<div class=" col-lg-4 form-group">
@@ -72,27 +60,14 @@
 										</div>
 									</div>
 
-									<!-- <div class=" col-lg-6 form-group">
+									<div class=" col-lg-6 form-group">
 										<label for="project_phase"><?= $this->lang->line('al_project_phase') ?></label>
 										<a class="btn-sm btn-default" id="al_tp_4" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('al_project_phase_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
 										<span class="al_4">2000</span><?= $this->lang->line('character') ?>
 										<div>
 										<input id="al_txt_4" type="text" name="project_phase" class="form-control input-md" onkeyup = "limite_textarea(this.value, 'al_4')" maxlength="2000" oninput="eylem(this, this.value)" required="false">
 										</div>
-									</div> -->
-									
-									<div class="col-lg-4 form-group">
-										<label><?= $this->lang->line('al_project_phase') ?></label>
-										<a class="btn-sm btn-default" id="al_tp_4" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('al_project_phase_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
-										<select name="project_phase" size="1" class="form-control" tabindex="1" required>
-										<option selected="selected" disabled="disabled" value=""> Selecione </option>
-											<?php foreach ($phase as $item) { ?>
-												<option value="<?= $item->project_phase_id; ?>">
-													<?= $item->project_phase; ?></option>
-											<?php  } ?>
-										</select>
 									</div>
-
 									<div class=" col-lg-6 form-group">
 										<label for="wbs_id"><?= $this->lang->line('wbs_id') ?></label>
 										<a class="btn-sm btn-default" id="al_tp_5" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('wbs_id_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
@@ -127,7 +102,8 @@
 		</div>
 	</div>
 </body>
-<script>
+<script src="<?= base_url() ?>assets/js/jquery-1.11.1.js" type="text/javascript"></script>
+<script type="text/javascript">
 for (var i = 1; i <= 15; i++) {
 		if (document.getElementById("al_tp_"+i).title == "") {
 			document.getElementById("al_tp_"+i).hidden = true;
