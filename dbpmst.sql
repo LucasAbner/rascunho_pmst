@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Ago-2021 às 15:08
+-- Tempo de geração: 27-Ago-2021 às 15:06
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 7.3.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `dbpmst_rp6`
+-- Banco de dados: `dbpmst`
 --
 
 -- --------------------------------------------------------
@@ -94,7 +94,8 @@ CREATE TABLE `activity` (
   `estimate_for_completion` decimal(11,2) DEFAULT NULL,
   `wbs_id` text DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `reserve` text DEFAULT NULL
+  `reserve` text DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -108,12 +109,12 @@ CREATE TABLE `anexo` (
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` timestamp NULL DEFAULT NULL,
-  `identifier` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `identifier` varchar(100) DEFAULT NULL,
   `view_id` int(11) NOT NULL,
   `field_id` int(11) NOT NULL,
-  `field_name` varchar(55) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `path` varchar(300) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `field_name` varchar(55) DEFAULT NULL,
+  `path` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -137,15 +138,15 @@ CREATE TABLE `assumption_log` (
 
 CREATE TABLE `benefits_plan` (
   `benefits_plan_id` int(11) NOT NULL,
-  `target_benefits` varchar(5000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `strategic_alignment` varchar(5000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `schedule_benefit` varchar(5000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `benefits_owner` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `indicators` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `premises` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `risks` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `target_benefits` varchar(1000) DEFAULT NULL,
+  `strategic_alignment` varchar(1000) DEFAULT NULL,
+  `schedule_benefit` varchar(1000) DEFAULT NULL,
+  `benefits_owner` varchar(1000) DEFAULT NULL,
+  `indicators` varchar(1000) DEFAULT NULL,
+  `premises` varchar(1000) DEFAULT NULL,
+  `risks` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -155,10 +156,10 @@ CREATE TABLE `benefits_plan` (
 
 CREATE TABLE `business_case` (
   `business_case_id` int(11) NOT NULL,
-  `business_deals` varchar(5000) DEFAULT NULL,
-  `situation_analysis` varchar(5000) DEFAULT NULL,
-  `recommendation` varchar(5000) DEFAULT NULL,
-  `evaluation` varchar(5000) DEFAULT NULL,
+  `business_deals` varchar(1000) DEFAULT NULL,
+  `situation_analysis` varchar(1000) DEFAULT NULL,
+  `recommendation` varchar(1000) DEFAULT NULL,
+  `evaluation` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -170,18 +171,18 @@ CREATE TABLE `business_case` (
 
 CREATE TABLE `change_log` (
   `change_log_id` int(11) NOT NULL,
-  `id_number` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `requester` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_number` varchar(1000) DEFAULT NULL,
+  `requester` varchar(1000) DEFAULT NULL,
   `request_date` date DEFAULT NULL,
-  `change_type` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `situation` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `change_description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `project_management_feedback` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ccc_feedback` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `change_type` varchar(1000) DEFAULT NULL,
+  `situation` varchar(1000) DEFAULT NULL,
+  `change_description` varchar(1000) DEFAULT NULL,
+  `project_management_feedback` varchar(1000) DEFAULT NULL,
+  `ccc_feedback` varchar(1000) DEFAULT NULL,
   `ccc_feedback_date` date DEFAULT NULL,
-  `comments` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comments` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -191,20 +192,21 @@ CREATE TABLE `change_log` (
 
 CREATE TABLE `change_request` (
   `id` int(11) NOT NULL,
-  `requester` varchar(100) DEFAULT NULL,
+  `requester` varchar(10000) DEFAULT NULL,
   `number_id` int(11) DEFAULT NULL,
   `request_date` date DEFAULT NULL,
-  `type` varchar(100) DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL,
-  `impacted_areas` varchar(1000) DEFAULT NULL,
-  `impacted_docs` varchar(1000) DEFAULT NULL,
-  `justification` varchar(1000) DEFAULT NULL,
-  `comments` varchar(1000) DEFAULT NULL,
-  `manager_opinion` varchar(1000) DEFAULT NULL,
-  `committee_opinion` varchar(1000) DEFAULT NULL,
+  `type` varchar(1000) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `impacted_areas` text DEFAULT NULL,
+  `impacted_docs` text DEFAULT NULL,
+  `justification` text DEFAULT NULL,
+  `comments` text DEFAULT NULL,
+  `manager_opinion` text DEFAULT NULL,
+  `committee_opinion` text DEFAULT NULL,
   `status` varchar(1000) DEFAULT NULL,
   `committee_date` date DEFAULT NULL,
-  `project_id` int(11) NOT NULL
+  `project_id` int(11) NOT NULL,
+  `log` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -222,6 +224,20 @@ CREATE TABLE `chat` (
   `ip_address` text NOT NULL,
   `project_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `closed_procurement_documentation`
+--
+
+CREATE TABLE `closed_procurement_documentation` (
+  `closed_procurement_documentation_id` int(11) NOT NULL,
+  `closing_date` date NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `supplier_representative` int(11) NOT NULL,
+  `provider` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -268,8 +284,9 @@ CREATE TABLE `communication_responsability` (
 
 CREATE TABLE `communication_stakeholder_responsability` (
   `communication_item_id` int(11) NOT NULL,
+  `communication_responsability_id` int(11) NOT NULL,
   `stakeholder_id` int(11) NOT NULL,
-  `communication_responsability_id` int(11) NOT NULL
+  `communication_item_responsability_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -288,9 +305,9 @@ CREATE TABLE `cost_mp` (
   `project_id` int(11) NOT NULL,
   `status` bit(1) DEFAULT NULL,
   `control_thresholds` text DEFAULT NULL,
-  `details` text DEFAULT NULL,
+  `units_measure` text DEFAULT NULL,
   `precision_level` text DEFAULT NULL,
-  `units_measure` text DEFAULT NULL
+  `details` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -312,15 +329,55 @@ CREATE TABLE `delivery_acceptance_term` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `duration_estimates`
+--
+
+CREATE TABLE `duration_estimates` (
+  `duration_estimates_id` int(11) NOT NULL,
+  `estimated_duration` int(11) DEFAULT NULL,
+  `performed_duration` int(11) DEFAULT NULL,
+  `estimated_start_date` date DEFAULT NULL,
+  `performed_start_date` date DEFAULT NULL,
+  `estimated_end_date` date DEFAULT NULL,
+  `performed_end_date` date NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `version` text DEFAULT NULL,
+  `activity_id` int(11) DEFAULT NULL,
+  `project_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `field`
 --
 
 CREATE TABLE `field` (
   `field_id` int(11) NOT NULL,
   `view_id` int(11) NOT NULL,
-  `field_name` varchar(55) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_name` varchar(55) DEFAULT NULL,
   `field_status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `final_report`
+--
+
+CREATE TABLE `final_report` (
+  `final_report_id` int(11) NOT NULL,
+  `description` text DEFAULT NULL,
+  `scope` text DEFAULT NULL,
+  `quality_objectives` text DEFAULT NULL,
+  `cost_objectives` text DEFAULT NULL,
+  `summary_validation` text DEFAULT NULL,
+  `schedule_objectives` text DEFAULT NULL,
+  `summary_business` text DEFAULT NULL,
+  `summary_risks` text DEFAULT NULL,
+  `signature_validator` text DEFAULT NULL,
+  `project_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -351,19 +408,65 @@ CREATE TABLE `human_resources_mp` (
 
 CREATE TABLE `issues_record` (
   `issues_record_id` int(11) NOT NULL,
-  `identification` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `identification` varchar(1000) DEFAULT NULL,
   `identification_date` date DEFAULT NULL,
-  `question_description` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `responsable` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `situation` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `action` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `question_description` varchar(1000) DEFAULT NULL,
+  `type` varchar(1000) DEFAULT NULL,
+  `responsable` varchar(1000) DEFAULT NULL,
+  `situation` varchar(1000) DEFAULT NULL,
+  `action` varchar(1000) DEFAULT NULL,
   `resolution_date` date DEFAULT NULL,
   `replan_date` date DEFAULT NULL,
-  `observations` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `observations` varchar(1000) DEFAULT NULL,
   `status` bit(1) DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `items_check`
+--
+
+CREATE TABLE `items_check` (
+  `id` int(11) NOT NULL,
+  `items_to_check` varchar(200) DEFAULT NULL,
+  `ok` bit(1) DEFAULT NULL,
+  `comments` varchar(200) DEFAULT NULL,
+  `quality_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `knowledge_area`
+--
+
+CREATE TABLE `knowledge_area` (
+  `knowledge_area_id` int(11) NOT NULL,
+  `name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `lesson_learned_register`
+--
+
+CREATE TABLE `lesson_learned_register` (
+  `lesson_learned_register_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `stakeholder` text NOT NULL,
+  `date` date NOT NULL,
+  `description` text NOT NULL,
+  `category` text NOT NULL,
+  `interested` text NOT NULL,
+  `status` varchar(40) NOT NULL,
+  `impact` text NOT NULL,
+  `recommendations` text NOT NULL,
+  `knowledge_area_id` int(11) NOT NULL,
+  `life_cycle` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -386,18 +489,42 @@ CREATE TABLE `log_activity` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `log_notification`
+--
+
+CREATE TABLE `log_notification` (
+  `project_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `notifications` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `milestone`
+--
+
+CREATE TABLE `milestone` (
+  `milestone_id` int(11) NOT NULL,
+  `milestone` text NOT NULL,
+  `project_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `notification_board`
 --
 
 CREATE TABLE `notification_board` (
   `notification_board_id` int(11) NOT NULL,
-  `running_activities` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `important_activities` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `open_issues` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `changes_approval` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `general_warnings` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `running_activities` text DEFAULT NULL,
+  `important_activities` text DEFAULT NULL,
+  `open_issues` text DEFAULT NULL,
+  `changes_approval` text DEFAULT NULL,
+  `general_warnings` text DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -407,12 +534,12 @@ CREATE TABLE `notification_board` (
 
 CREATE TABLE `process_improvement_plan` (
   `process_improvement_plan_id` int(11) NOT NULL,
-  `process_limits` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `process_configuration` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `process_metrics` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `goals_performace_improvement` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `process_limits` varchar(1000) DEFAULT NULL,
+  `process_configuration` varchar(1000) DEFAULT NULL,
+  `process_metrics` varchar(1000) DEFAULT NULL,
+  `goals_performance_improvement` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -423,25 +550,17 @@ CREATE TABLE `process_improvement_plan` (
 CREATE TABLE `procurement_mp` (
   `procurement_mp_id` int(11) NOT NULL,
   `products_services_obtained` text DEFAULT NULL,
-  `team_actions` text DEFAULT NULL,
+  `schedule_procurement_activities` text DEFAULT NULL,
   `performance_metrics` text DEFAULT NULL,
   `procurement_management` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL,
   `status` bit(1) DEFAULT NULL,
-  `schedule_procurement_activities` varchar(1000) DEFAULT NULL,
-  `functions` varchar(1000) DEFAULT NULL,
-  `restriction` varchar(1000) DEFAULT NULL,
-  `premises` varchar(1000) DEFAULT NULL,
-  `coins` varchar(1000) DEFAULT NULL,
-  `independent_estimates` varchar(1000) DEFAULT NULL,
-  `risk_issues` varchar(1000) DEFAULT NULL,
-  `sellers` varchar(1000) DEFAULT NULL,
-  `procurement_strategy` varchar(1000) DEFAULT NULL,
   `estimates` text DEFAULT NULL,
   `issues` text DEFAULT NULL,
+  `sellers` text DEFAULT NULL,
   `strategy` text DEFAULT NULL,
-  `constraint_assumption` text DEFAULT NULL,
   `legal_jurisdiction` text DEFAULT NULL,
+  `constraint_assumption` text DEFAULT NULL,
   `roles` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -596,15 +715,15 @@ CREATE TABLE `project_charter_summary_schedule` (
 
 CREATE TABLE `project_closure_term` (
   `project_closure_term_id` int(11) NOT NULL,
-  `client` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `client` varchar(1000) DEFAULT NULL,
   `project_closure_date` date DEFAULT NULL,
-  `main_changes_approved` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `main_deviations` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `main_lessons_learned` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `client_comments` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sponsor_comments` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `main_changes_approved` varchar(1000) DEFAULT NULL,
+  `main_deviations` varchar(1000) DEFAULT NULL,
+  `main_lessons_learned` varchar(1000) DEFAULT NULL,
+  `client_comments` varchar(1000) DEFAULT NULL,
+  `sponsor_comments` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -662,6 +781,35 @@ CREATE TABLE `project_performance_report` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `project_phase`
+--
+
+CREATE TABLE `project_phase` (
+  `project_phase_id` int(11) NOT NULL,
+  `project_phase` text NOT NULL,
+  `project_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `project_phase_closure`
+--
+
+CREATE TABLE `project_phase_closure` (
+  `project_phase_closure_id` int(11) NOT NULL,
+  `name` text DEFAULT NULL,
+  `responsible` text DEFAULT NULL,
+  `deliveries` text DEFAULT NULL,
+  `phase_end_date` text DEFAULT NULL,
+  `validator` text DEFAULT NULL,
+  `project_manager` text DEFAULT NULL,
+  `quality_manager` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `project_user`
 --
 
@@ -709,20 +857,38 @@ CREATE TABLE `quality_checklist_item` (
 
 CREATE TABLE `quality_mp` (
   `quality_mp_id` int(11) NOT NULL,
-  `methodology` text DEFAULT NULL,
-  `related_processes` varchar(1000) DEFAULT NULL,
-  `expectations_tolerances` text DEFAULT NULL,
-  `traceability` text DEFAULT NULL,
+  `objectives` text DEFAULT NULL,
+  `activities` varchar(1000) DEFAULT NULL,
+  `deliverables` text DEFAULT NULL,
+  `roles_responsibilities` text DEFAULT NULL,
   `project_id` int(11) NOT NULL,
   `status` bit(1) DEFAULT NULL,
   `standards` text DEFAULT NULL,
-  `objectives` text DEFAULT NULL,
-  `roles_responsibilities` text DEFAULT NULL,
-  `deliverables` text DEFAULT NULL,
-  `activities` text DEFAULT NULL,
   `tools` text DEFAULT NULL,
   `procedures` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `quality_reports`
+--
+
+CREATE TABLE `quality_reports` (
+  `quality_reports_id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `type` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `identifier` text DEFAULT NULL,
+  `areas` text DEFAULT NULL,
+  `deliveries` text DEFAULT NULL,
+  `recommendations` text DEFAULT NULL,
+  `corrective_actions` text DEFAULT NULL,
+  `manager_opinion` text DEFAULT NULL,
+  `conclusions` text DEFAULT NULL,
+  `project_id` int(11) NOT NULL,
+  `responsible` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -752,9 +918,9 @@ CREATE TABLE `requirement_log` (
   `creation_date` date DEFAULT NULL,
   `last_change_date` date DEFAULT NULL,
   `last_change_responsible` date DEFAULT NULL,
-  `last_change_reason` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_change_reason` varchar(1000) DEFAULT NULL,
   `requirement_registration_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -764,28 +930,28 @@ CREATE TABLE `requirement_log` (
 
 CREATE TABLE `requirement_registration` (
   `requirement_registration_id` int(11) NOT NULL,
-  `associated_id` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `business_strategy` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `requirement_name` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `priority` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `version` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phase` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `associated_delivery` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `requester` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `complexity` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `acceptance_criteria` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `responsible` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `validity` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `supporting_documentation` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `requirement_situation` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `associated_id` varchar(1000) DEFAULT NULL,
+  `business_strategy` varchar(1000) DEFAULT NULL,
+  `requirement_name` varchar(1000) DEFAULT NULL,
+  `priority` varchar(1000) DEFAULT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `version` varchar(1000) DEFAULT NULL,
+  `phase` varchar(1000) DEFAULT NULL,
+  `associated_delivery` varchar(1000) DEFAULT NULL,
+  `type` varchar(1000) DEFAULT NULL,
+  `requester` varchar(1000) DEFAULT NULL,
+  `complexity` varchar(1000) DEFAULT NULL,
+  `acceptance_criteria` varchar(1000) DEFAULT NULL,
+  `responsible` varchar(1000) DEFAULT NULL,
+  `validity` varchar(1000) DEFAULT NULL,
+  `supporting_documentation` varchar(1000) DEFAULT NULL,
+  `requirement_situation` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL,
-  `product_design` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `test_cases` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `requirements_dependency` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `external_dependency` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `product_design` text DEFAULT NULL,
+  `test_cases` text DEFAULT NULL,
+  `requirements_dependency` text DEFAULT NULL,
+  `external_dependency` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -836,33 +1002,33 @@ CREATE TABLE `risk_mp` (
 
 CREATE TABLE `risk_register` (
   `risk_register_id` int(11) NOT NULL,
-  `impacted_objective` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `risk_status` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `impacted_objective` varchar(1000) DEFAULT NULL,
+  `risk_status` varchar(1000) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `type` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `priority` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `event` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `identifier` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(1000) DEFAULT NULL,
+  `priority` varchar(1000) DEFAULT NULL,
+  `event` varchar(1000) DEFAULT NULL,
+  `identifier` varchar(1000) DEFAULT NULL,
   `status` bit(1) DEFAULT NULL,
   `project_id` int(11) NOT NULL,
-  `probability` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `impact` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `score` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `effects` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `strategy` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `causes` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `triggers` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `responses` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `responses_owner` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `timing` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `residual` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `secondary` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contingency` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contingency_owner` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `fallback` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `category` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `lessons` text COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `probability` text DEFAULT NULL,
+  `impact` text DEFAULT NULL,
+  `score` text DEFAULT NULL,
+  `effects` text DEFAULT NULL,
+  `strategy` text DEFAULT NULL,
+  `causes` text DEFAULT NULL,
+  `triggers` text DEFAULT NULL,
+  `responses` text DEFAULT NULL,
+  `responses_owner` text DEFAULT NULL,
+  `timing` text DEFAULT NULL,
+  `residual` text DEFAULT NULL,
+  `secondary` text DEFAULT NULL,
+  `contingency` text DEFAULT NULL,
+  `contingency_owner` text DEFAULT NULL,
+  `fallback` text DEFAULT NULL,
+  `category` text DEFAULT NULL,
+  `lessons` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -910,14 +1076,12 @@ CREATE TABLE `scope_mp` (
 
 CREATE TABLE `scope_specification` (
   `scope_specification_id` int(11) NOT NULL,
-  `scope_description` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `acceptance_criteria` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deliveries` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `exclusions` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `restrictions` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `assumptions` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `scope_description` varchar(1000) DEFAULT NULL,
+  `acceptance_criteria` varchar(1000) DEFAULT NULL,
+  `deliveries` varchar(1000) DEFAULT NULL,
+  `exclusions` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -943,7 +1107,7 @@ CREATE TABLE `signature` (
 
 CREATE TABLE `stakeholder` (
   `stakeholder_id` int(11) NOT NULL,
-  `name` varchar(1000) DEFAULT NULL,
+  `name` text DEFAULT NULL,
   `type` varchar(1000) DEFAULT NULL,
   `organization` varchar(1000) DEFAULT NULL,
   `position` varchar(1000) DEFAULT NULL,
@@ -999,20 +1163,20 @@ CREATE TABLE `stakeholder_mp` (
 
 CREATE TABLE `team_performance_evaluation` (
   `team_performance_evaluation_id` int(11) NOT NULL,
-  `team_member_name` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `role` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `project_function` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `team_member_name` varchar(1000) DEFAULT NULL,
+  `role` varchar(1000) DEFAULT NULL,
+  `project_function` varchar(1000) DEFAULT NULL,
   `report_date` date DEFAULT NULL,
-  `team_member_comments` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `strong_points` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `improvement` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `development_plan` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `already_developed` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `external_comments` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `team_mates_comments` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `team_performance_evaluationcol` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `team_member_comments` varchar(1000) DEFAULT NULL,
+  `strong_points` varchar(1000) DEFAULT NULL,
+  `improvement` varchar(1000) DEFAULT NULL,
+  `development_plan` varchar(1000) DEFAULT NULL,
+  `already_developed` varchar(1000) DEFAULT NULL,
+  `external_comments` varchar(1000) DEFAULT NULL,
+  `team_mates_comments` varchar(1000) DEFAULT NULL,
+  `team_performance_evaluationcol` varchar(1000) DEFAULT NULL,
   `project_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1022,11 +1186,11 @@ CREATE TABLE `team_performance_evaluation` (
 
 CREATE TABLE `upload` (
   `id` int(11) NOT NULL,
-  `path` varchar(1000) DEFAULT NULL,
-  `view` varchar(1000) DEFAULT NULL,
-  `alt` varchar(1000) DEFAULT NULL,
+  `path` text DEFAULT NULL,
+  `view` text DEFAULT NULL,
+  `alt` text DEFAULT NULL,
   `project_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1132,6 +1296,12 @@ ALTER TABLE `chat`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `closed_procurement_documentation`
+--
+ALTER TABLE `closed_procurement_documentation`
+  ADD PRIMARY KEY (`closed_procurement_documentation_id`);
+
+--
 -- Índices para tabela `communication_item`
 --
 ALTER TABLE `communication_item`
@@ -1147,7 +1317,7 @@ ALTER TABLE `communication_responsability`
 -- Índices para tabela `communication_stakeholder_responsability`
 --
 ALTER TABLE `communication_stakeholder_responsability`
-  ADD PRIMARY KEY (`communication_item_id`,`stakeholder_id`,`communication_responsability_id`);
+  ADD PRIMARY KEY (`communication_item_responsability_id`);
 
 --
 -- Índices para tabela `cost_mp`
@@ -1162,10 +1332,22 @@ ALTER TABLE `delivery_acceptance_term`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `duration_estimates`
+--
+ALTER TABLE `duration_estimates`
+  ADD PRIMARY KEY (`duration_estimates_id`);
+
+--
 -- Índices para tabela `field`
 --
 ALTER TABLE `field`
   ADD PRIMARY KEY (`field_id`);
+
+--
+-- Índices para tabela `final_report`
+--
+ALTER TABLE `final_report`
+  ADD PRIMARY KEY (`final_report_id`);
 
 --
 -- Índices para tabela `human_resources_mp`
@@ -1180,10 +1362,40 @@ ALTER TABLE `issues_record`
   ADD PRIMARY KEY (`issues_record_id`);
 
 --
+-- Índices para tabela `items_check`
+--
+ALTER TABLE `items_check`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `knowledge_area`
+--
+ALTER TABLE `knowledge_area`
+  ADD PRIMARY KEY (`knowledge_area_id`);
+
+--
+-- Índices para tabela `lesson_learned_register`
+--
+ALTER TABLE `lesson_learned_register`
+  ADD PRIMARY KEY (`lesson_learned_register_id`);
+
+--
 -- Índices para tabela `log_activity`
 --
 ALTER TABLE `log_activity`
   ADD PRIMARY KEY (`log_activity_id`);
+
+--
+-- Índices para tabela `log_notification`
+--
+ALTER TABLE `log_notification`
+  ADD PRIMARY KEY (`project_id`);
+
+--
+-- Índices para tabela `milestone`
+--
+ALTER TABLE `milestone`
+  ADD PRIMARY KEY (`milestone_id`);
 
 --
 -- Índices para tabela `notification_board`
@@ -1282,6 +1494,18 @@ ALTER TABLE `project_performance_report`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `project_phase`
+--
+ALTER TABLE `project_phase`
+  ADD PRIMARY KEY (`project_phase_id`);
+
+--
+-- Índices para tabela `project_phase_closure`
+--
+ALTER TABLE `project_phase_closure`
+  ADD PRIMARY KEY (`project_phase_closure_id`);
+
+--
 -- Índices para tabela `quality_checklist`
 --
 ALTER TABLE `quality_checklist`
@@ -1298,6 +1522,12 @@ ALTER TABLE `quality_checklist_item`
 --
 ALTER TABLE `quality_mp`
   ADD PRIMARY KEY (`quality_mp_id`);
+
+--
+-- Índices para tabela `quality_reports`
+--
+ALTER TABLE `quality_reports`
+  ADD PRIMARY KEY (`quality_reports_id`);
 
 --
 -- Índices para tabela `requirements_mp`
@@ -1455,6 +1685,12 @@ ALTER TABLE `chat`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `closed_procurement_documentation`
+--
+ALTER TABLE `closed_procurement_documentation`
+  MODIFY `closed_procurement_documentation_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `communication_item`
 --
 ALTER TABLE `communication_item`
@@ -1465,6 +1701,12 @@ ALTER TABLE `communication_item`
 --
 ALTER TABLE `communication_responsability`
   MODIFY `communication_responsability_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `communication_stakeholder_responsability`
+--
+ALTER TABLE `communication_stakeholder_responsability`
+  MODIFY `communication_item_responsability_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `cost_mp`
@@ -1479,6 +1721,18 @@ ALTER TABLE `delivery_acceptance_term`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `duration_estimates`
+--
+ALTER TABLE `duration_estimates`
+  MODIFY `duration_estimates_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `final_report`
+--
+ALTER TABLE `final_report`
+  MODIFY `final_report_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `human_resources_mp`
 --
 ALTER TABLE `human_resources_mp`
@@ -1491,10 +1745,40 @@ ALTER TABLE `issues_record`
   MODIFY `issues_record_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `items_check`
+--
+ALTER TABLE `items_check`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `knowledge_area`
+--
+ALTER TABLE `knowledge_area`
+  MODIFY `knowledge_area_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `lesson_learned_register`
+--
+ALTER TABLE `lesson_learned_register`
+  MODIFY `lesson_learned_register_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `log_activity`
 --
 ALTER TABLE `log_activity`
   MODIFY `log_activity_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `log_notification`
+--
+ALTER TABLE `log_notification`
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `milestone`
+--
+ALTER TABLE `milestone`
+  MODIFY `milestone_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `notification_board`
@@ -1587,6 +1871,18 @@ ALTER TABLE `project_performance_report`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `project_phase`
+--
+ALTER TABLE `project_phase`
+  MODIFY `project_phase_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `project_phase_closure`
+--
+ALTER TABLE `project_phase_closure`
+  MODIFY `project_phase_closure_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `quality_checklist`
 --
 ALTER TABLE `quality_checklist`
@@ -1603,6 +1899,12 @@ ALTER TABLE `quality_checklist_item`
 --
 ALTER TABLE `quality_mp`
   MODIFY `quality_mp_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `quality_reports`
+--
+ALTER TABLE `quality_reports`
+  MODIFY `quality_reports_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `requirements_mp`
