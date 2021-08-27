@@ -37,15 +37,15 @@
 							<form method="POST" action="<?php echo base_url('integration/deliverable-status/update/'); ?><?php echo $id; ?>">
 								<input type="hidden" id="project_id" name="project_id" value="<?php echo $project_id; ?>">
 
-
-								<div class=" col-lg-6 form-group">
-									<label for="validator_name"><?= $this->lang->line('ds_validator_name') ?></label>
-									<span class="ds_1">2000</span><?= $this->lang->line('character') ?>
-									<a class="btn-sm btn-default" id ="ds_tp_1" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('validator_name_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
-									<div>
-										<input id="ds_txt_1" type="text" name="validator_name" class="form-control input-md" value="<?php echo $validator_name; ?>" onkeyup = "limite_textarea(this.value, 'ds_1')" maxlength="2000" oninput="eylem(this, this.value)" required="false">
-										
-									</div>
+								<div class="col-lg-6 form-group">
+									<label><?= $this->lang->line('ds_validator_name') ?></label>
+									<a class="btn-sm btn-default" id="ds_tp_1" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('validator_name_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
+									<select name="validator_name" size="1" class="form-control" tabindex="1" required>
+										<?php foreach ($stakeholder as $item) { ?>
+											<option <?php if ($item->stakeholder_id == $validator_name) echo "selected"; ?> value="<?= $item->stakeholder_id; ?>">
+												<?= getStakeholderName($item->stakeholder_id); ?></option>
+										<?php  } ?>
+									</select>
 								</div>
 
 								<div class=" col-lg-6 form-group">

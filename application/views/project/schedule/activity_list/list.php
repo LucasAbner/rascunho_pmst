@@ -57,6 +57,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<table class="table table-bordered table-striped" id="tableNB">
+
 										<thead>
 											<tr>
 												<th><?= $this->lang->line('al_label') ?></th>
@@ -77,60 +78,62 @@
 													<td><?php echo $a->milestone; ?></td>
 													<td><?php echo $a->activity_name; ?></td>
 
-													<td>
-														<div class="row">
-															<div class="col-sm-6">
+													<td style="max-width: 10px">
+														<div class="row" style="margin: auto">
+															<div class="col-sm-3" style="padding-left: 5px">
 																<form action="<?php echo base_url() ?>schedule/activity-list/edit/<?php echo $a->id; ?>" method="post">
 																	<input type="hidden" name="project_id" value="<?= $a->project_id; ?>">
 																	<button type="submit" class="btn btn-default"><em class="fa fa-pencil"></em><span class="hidden-xs"></span></button>
 																</form>
-											
+															</div>
+															<div class="col-sm-3" style="margin-left: 13px;">
 																<button type="submit" class="btn btn-danger" onclick="deletar(<?= $a->project_id ?>, <?= $a->id; ?>)"><em class="fa fa-trash"></em><span class="hidden-xs"></span></button>
 															</div>
-															</div>
-															<!-- <div class="col-sm-3">
+														</div>
+								</div>
+								<!-- <div class="col-sm-3">
 												<form target="_blank" action="<?php echo base_url() ?>TeamPerformanceEvaluation_PDF/pdfGenerator/<?php echo $a->id; ?>" method="post">
 													<input type="hidden" name="project_id" value="<?= $project_id ?>">
 													<button type="submit" class="btn btn-success" ><em class="glyphicon glyphicon-file"></em> to PDF<span class="hidden-xs"></span></button>
 												</form>
 											</div> -->
-														</div>
-													</td>
-												</tr>
-											<?php
+							</div>
+							</td>
+							</tr>
+						<?php
 											}
-											?>
-										</tbody>
-									</table>
+						?>
+						</tbody>
+						</table>
 
 
-									<div class="row">
-										<div class="col-lg-12">
-											<form action="<?php echo base_url('project/'); ?><?php echo $project_id; ?>">
-												<button class="btn btn-lg btn-info pull-left"> <i class="glyphicon glyphicon-chevron-left"></i> <?= $this->lang->line('btn-back') ?></button>
-											</form>
-										</div>
-									</div>
-
-									<!-- /.row -->
-
-
-									<!--1º preencher o nome da view-->
-									<?php $view = array(
-										"name" => "activity_list",
-									); ?>
-
-									
-
-									<!--Carrega as imagens do projeto de acordo com a view, utiliza id ou project_id pra pegar o id do projeto e criar a query-->
-									<?php $this->load->view('upload/retrieve', $view) ?>
-
-								</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<form action="<?php echo base_url('project/'); ?><?php echo $project_id; ?>">
+									<button class="btn btn-lg btn-info pull-left"> <i class="glyphicon glyphicon-chevron-left"></i> <?= $this->lang->line('btn-back') ?></button>
+								</form>
 							</div>
 						</div>
+
+						<!-- /.row -->
+
+
+						<!--1º preencher o nome da view-->
+						<?php $view = array(
+							"name" => "activity_list",
+						); ?>
+
+
+
+						<!--Carrega as imagens do projeto de acordo com a view, utiliza id ou project_id pra pegar o id do projeto e criar a query-->
+						<?php $this->load->view('upload/retrieve', $view) ?>
+
+						</div>
 					</div>
-			</section>
+				</div>
 		</div>
+		</section>
+	</div>
 	</div>
 </body>
 
@@ -335,11 +338,11 @@
 				},
 				{
 					"data": "btn-actions",
-					"orderable": false
+					"orderable": true
 				}
 			],
 			"order": [
-				[1, 'attr']
+				[0, 'asc']
 			]
 		});
 	});
@@ -374,7 +377,8 @@
 <script type="text/javascript">
 	function deletar(idProjeto, id) {
 		//e.preventDefault();
-		alertify.confirm('Do you agree?').setting({
+		alertify.confirm('If you delete this activity also delete all tasks linked to it').setting({
+			title: 'Alert!',
 			'labels': {
 				ok: 'Agree',
 				cancel: 'Cancel'

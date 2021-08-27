@@ -23,7 +23,7 @@
 					</div>
 				<?php endif; ?>
 				<!-- /.row -->
-				<!-- <style>
+				<style>
 					.toggle {
 						padding: 22px 80px;
 						height: 16px;
@@ -51,7 +51,7 @@
 						top: 5px;
 						font-size: 18px;
 					}
-				</style> -->
+				</style> 
 				<div class="row">
 					<div class="col-lg-12">
 
@@ -109,7 +109,7 @@
 													if ($a->status == 1) {
 												?>
 														<tr dados='<?= json_encode($a); ?>'>
-															<td><?php echo $a->activity_id; ?></td>
+															<td><?php echo getActivityName($a->activity_id) ?></td>
 															<td><?php echo $a->estimated_duration; ?></td>
 															<td><?php echo $a->performed_duration; ?></td>
 															<td><?php echo $a->estimated_start_date; ?></td>
@@ -125,11 +125,10 @@
 																			<button type="submit" class="btn btn-default"><em class="fa fa-pencil"></em><span class="hidden-xs"></span></button>
 																		</form>
 																	</div>
+																	
 																	<div class="col-sm-3" style="margin-left: 13px;">
-																		<form action="<?php echo base_url() ?>schedule/duration-estimates/delete/<?php echo $a->duration_estimates_id; ?>" method="post">
-																			<input type="hidden" name="project_id" value="<?= $project_id ?>">
-																			<button type="submit" class="btn btn-danger"><em class="fa fa-trash"></em><span class="hidden-xs"></span></button>
-																		</form>
+																	<button type="submit" class="btn btn-danger" onclick="deletar(<?= $a->project_id ?>, <?= $a->duration_estimates_id; ?>)"><em class="fa fa-trash"></em><span class="hidden-xs"></span></button>
+																		
 																	</div>
 																</div>
 															</td>
@@ -171,7 +170,7 @@
 											foreach ($duration_estimates as $a) {
 											?>
 												<tr dados='<?= json_encode($a); ?>'>
-													<td><?php echo $a->activity_id; ?></td>
+													<td><?php echo getActivityName($a->activity_id) ?></td>
 													<td><?php echo $a->estimated_duration; ?></td>
 													<td><?php echo $a->performed_duration; ?></td>
 													<td><?php echo $a->estimated_start_date; ?></td>
@@ -337,7 +336,8 @@
 <script type="text/javascript">
 	function deletar(idProjeto, id) {
 		//e.preventDefault();
-		alertify.confirm('Do you agree?').setting({
+		alertify.confirm('If you delete this activity duration estimate, it will also delete all versions for it!').setting({
+			title: 'Alert!',
 			'labels': {
 				ok: 'Agree',
 				cancel: 'Cancel'
@@ -347,7 +347,7 @@
 
 				console.log(`Passei o ${idProjeto} e ${id}`);
 
-				$.post("<?php echo base_url() ?>schedule/activity-list/delete/" + id, {
+				$.post("<?php echo base_url() ?>schedule/duration-estimates/delete/" + id, {
 					project_id: idProjeto,
 				});
 

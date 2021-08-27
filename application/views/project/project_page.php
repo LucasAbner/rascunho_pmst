@@ -34,7 +34,7 @@
           <div class="col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title" style="text-align: center;padding-right: 53px;">
+                <h3 class="panel-title" style="text-align: center;padding-right: 2px;">
                   <strong><?= $this->lang->line('phases') ?>
                     <!-- <a class="btn-sm btn-default" data-toggle="tooltip" data-placement="right" title="Definir"><i class="glyphicon glyphicon-comment"></i></a> -->
                   </strong>
@@ -215,22 +215,22 @@
                             </a>
 
                             <?php
-                        $obj->load->model('Final_report_model');
+                            $obj->load->model('Final_report_model');
 
-                        if ($obj->Final_report_model->get($project[0]->project_id) == null) { ?>
-                          <a href="<?= base_url("integration/final-report/new/" . $project[0]->project_id) ?>">
-                          <?php } else { ?>
-                            <a href="<?= base_url("integration/final-report/edit/" . $project[0]->project_id) ?>">
-                            <?php   } ?>
-                            <div class=" col-lg-1 midBox integrationColor">
-                              <div class="verticalAlign">
-                                <i class="glyphicon glyphicon-star"></i>
-                                <?= $this->lang->line('final-report') ?>
-                              </div>
-                            </div>
-                            </a>
-
+                            if ($obj->Final_report_model->get($project[0]->project_id) == null) { ?>
+                              <a href="<?= base_url("integration/final-report/new/" . $project[0]->project_id) ?>">
+                              <?php } else { ?>
+                                <a href="<?= base_url("integration/final-report/edit/" . $project[0]->project_id) ?>">
+                                <?php   } ?>
+                                <div class=" col-lg-1 midBox integrationColor">
+                                  <div class="verticalAlign">
+                                    <i class="glyphicon glyphicon-star"></i>
+                                    <?= $this->lang->line('final-report') ?>
+                                  </div>
+                                </div>
+                                </a>
                       </div>
+
                       <!--  -->
                       <div class="col-lg-10 noSpaceSide floatRight">
 
@@ -265,17 +265,18 @@
                               </div>
                             </a>
 
-                            <a href="<?= base_url("Maintenance") ?>">
-                              <div class=" col-lg-1 midBox disableColor">
+                            <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+                            <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+
+                            <a href="<?= base_url("integration/assumption-log/list/" . $project[0]->project_id) ?>">
+                              <div class=" col-lg-1 midBox integrationColor">
                                 <div class="verticalAlign">
                                   <i class="glyphicon glyphicon-star"></i>
-                                  <?= $this->lang->line('earned-value') ?>
+                                  <?= $this->lang->line('assumption-log') ?>
                                 </div>
                               </div>
                             </a>
 
-                            <div class=" col-lg-1 midBox integrationColor hideBox"></div>
-                            <div class=" col-lg-1 midBox integrationColor hideBox"></div>
                             <div class=" col-lg-1 midBox integrationColor hideBox"></div>
                             <div class=" col-lg-1 midBox integrationColor hideBox"></div>
                             <div class=" col-lg-1 midBox integrationColor hideBox"></div>
@@ -296,26 +297,26 @@
                       <!--  -->
                       <div class="col-lg-10 noSpaceSide floatRight">
 
-                               <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+                        <div class=" col-lg-1 midBox integrationColor hideBox"></div>
 
-                               <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+                        <div class=" col-lg-1 midBox integrationColor hideBox"></div>
 
-                                <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+                        <div class=" col-lg-1 midBox integrationColor hideBox"></div>
 
-                                <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+                        <div class=" col-lg-1 midBox integrationColor hideBox"></div>
 
-                                <a href="<?= base_url("integration/lesson-learned-register/list/" . $project[0]->project_id) ?>">
-                              <div class=" col-lg-1 midBox integrationColor">
-                                <div class="verticalAlign">
-                                  <i class="glyphicon glyphicon-star"></i>
-                                  <?= $this->lang->line('lesson-learned-register') ?>
-                                </div>
-                              </div>
-                            </a>
+                        <a href="<?= base_url("integration/lesson-learned-register/list/" . $project[0]->project_id) ?>">
+                          <div class=" col-lg-1 midBox integrationColor">
+                            <div class="verticalAlign">
+                              <i class="glyphicon glyphicon-star"></i>
+                              <?= $this->lang->line('lesson-learned-register') ?>
+                            </div>
+                          </div>
+                        </a>
 
-                                <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+                        <div class=" col-lg-1 midBox integrationColor hideBox"></div>
 
-                                <div class=" col-lg-1 midBox integrationColor hideBox"></div>
+                        <div class=" col-lg-1 midBox integrationColor hideBox"></div>
                       </div>
                       <!--  -->
                     </div>
@@ -323,7 +324,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox scopeBox scopeColor">
                         <div class="verticalAlign">
@@ -407,14 +408,7 @@
                             </div>
                             </a>
 
-                            <a href="<?= base_url("Maintenance") ?>">
-                              <div class=" col-lg-1 midBox disableColor">
-                                <div class="verticalAlign">
-                                  <i class="glyphicon glyphicon-search"></i>
-                                  <?= $this->lang->line('requirement-traceability') ?>
-                                </div>
-                              </div>
-                            </a>
+                            <div class=" col-lg-1 midBox scopeColor hideBox"></div>
 
                             <a href="<?= base_url("scope/work-breakdown-structure/new/" . $project[0]->project_id) ?>">
                               <div class=" col-lg-1 midBox scopeColor">
@@ -438,7 +432,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox scheduleBox timeColor">
                         <div class="verticalAlign">
@@ -577,7 +571,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox costBox">
                         <div class="verticalAlign">
@@ -606,14 +600,7 @@
                             </div>
                             </a>
 
-                            <a href="<?= base_url("Maintenance") ?>">
-                              <div class=" col-lg-1 midBox disableColor">
-                                <div class="verticalAlign">
-                                  <i class="fa fa-money"></i>
-                                  <?= $this->lang->line('cost-baseline') ?>
-                                </div>
-                              </div>
-                            </a>
+                            <div class=" col-lg-1 midBox costColor hideBox"></div>
 
                             <div class=" col-lg-1 midBox costColor hideBox"></div>
 
@@ -638,14 +625,7 @@
                           </div>
                         </a>
 
-                        <a href="<?= base_url("Maintenance") ?>">
-                          <div class=" col-lg-1 midBox disableColor">
-                            <div class="verticalAlign">
-                              <i class="fa fa-money"></i>
-                              <?= $this->lang->line('project-funding') ?>
-                            </div>
-                          </div>
-                        </a>
+                        <div class=" col-lg-1 midBox costColor hideBox"></div>
 
                         <div class=" col-lg-1 midBox costColor hideBox"></div>
 
@@ -662,7 +642,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox qualityBox">
                         <div class="verticalAlign">
@@ -711,7 +691,7 @@
                       </div>
                     </a> -->
                             <div class=" col-lg-1 midBox qualityColor hideBox"></div>
-                            
+
 
 
                             <a href="<?= base_url("quality/quality-checklist/list/" . $project[0]->project_id) ?>">
@@ -734,34 +714,20 @@
 
                         <div class=" col-lg-1 midBox qualityColor hideBox"></div>
 
-                        <a href="<?= base_url("Maintenance") ?>">
-                          <div class=" col-lg-1 midBox disableColor">
-                            <div class="verticalAlign">
-                              <i class="fa fa-trophy"></i>
-                              <?= $this->lang->line('process-quality') ?>
-                            </div>
-                          </div>
-                        </a>
+                        <div class=" col-lg-1 midBox qualityColor hideBox"></div>
 
-                        <a href="<?= base_url("Maintenance") ?>">
-                          <div class=" col-lg-1 midBox disableColor">
-                            <div class="verticalAlign">
-                              <i class="fa fa-trophy"></i>
-                              <?= $this->lang->line('quality-metrics') ?>
-                            </div>
-                          </div>
-                        </a>
+                        <div class=" col-lg-1 midBox qualityColor hideBox"></div>
 
 
                         <div class=" col-lg-1 midBox qualityColor hideBox"></div>
                         <a href="<?= base_url("quality/quality-reports/list/" . $project[0]->project_id) ?>">
-                              <div class=" col-lg-1 midBox qualityColor">
-                                <div class="verticalAlign">
-                                  <i class="fa fa-trophy"></i>
-                                  <?= $this->lang->line('quality-reports') ?>
-                                </div>
-                              </div>
-                            </a>
+                          <div class=" col-lg-1 midBox qualityColor">
+                            <div class="verticalAlign">
+                              <i class="fa fa-trophy"></i>
+                              <?= $this->lang->line('quality_reports') ?>
+                            </div>
+                          </div>
+                        </a>
 
                         <div class=" col-lg-1 midBox qualityColor hideBox"></div>
 
@@ -774,7 +740,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox humanBox hrColor">
                         <div class="verticalAlign">
@@ -814,15 +780,9 @@
                             </a>
 
                             <div class=" col-lg-1 midBox hrColor hideBox"></div>
+                            <div class=" col-lg-1 midBox hrColor hideBox"></div>
 
-                            <a href="<?= base_url("Maintenance") ?>">
-                              <div class=" col-lg-1 midBox disableColor">
-                                <div class="verticalAlign">
-                                  <i class="fa fa-male"></i>
-                                  <?= $this->lang->line('project-team') ?>
-                                </div>
-                              </div>
-                            </a>
+                            
 
                             <div class=" col-lg-1 midBox hrColor hideBox"></div>
 
@@ -865,14 +825,9 @@
 
                         <div class=" col-lg-1 midBox hrColor hideBox"></div>
 
-                        <a href="<?= base_url("Maintenance") ?>">
-                          <div class=" col-lg-1 midBox disableColor">
-                            <div class="verticalAlign">
-                              <i class="fa fa-male"></i>
-                              <?= $this->lang->line('enterprise-environment') ?>
-                            </div>
-                          </div>
-                        </a>
+                        <div class=" col-lg-1 midBox hrColor hideBox"></div>
+
+                      
 
                         <div class=" col-lg-1 midBox hrColor hideBox"></div>
 
@@ -886,7 +841,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox communicColor verticalOneBox">
                         <div class="verticalAlign">
@@ -926,7 +881,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox riskColor verticalOneBox">
                         <div class="verticalAlign">
@@ -999,7 +954,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox procurementColor procurementBox">
                         <div class="verticalAlign">
@@ -1032,20 +987,15 @@
                             <div class=" col-lg-1 midBox procurementColor hideBox"></div>
 
                             <div class=" col-lg-1 midBox procurementColor hideBox"></div>
+                            <div class=" col-lg-1 midBox procurementColor hideBox"></div>
 
-                            <a href="<?= base_url("Maintenance") ?>">
-                              <div class=" col-lg-1 midBox disableColor">
-                                <div class="verticalAlign">
-                                  <i class="glyphicon glyphicon-shopping-cart"></i>
-                                  <?= $this->lang->line('procurement-agreement') ?>
-                                </div>
-                              </div>
-                            </a>
+
+                           
 
                             <a href="<?= base_url("procurement/closed-procurement-documentation/list/" . $project[0]->project_id) ?>">
                               <div class=" col-lg-1 midBox procurementColor">
                                 <div class="verticalAlign">
-                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                                  <i class="glyphicon glyphicon-shopping-cart"></i>
                                   <?= $this->lang->line('closed-procurement-documentation') ?>
                                 </div>
                               </div>
@@ -1089,7 +1039,7 @@
 
                   <!-- [] -->
 
-                  <div class="col-lg-12 wrapper noSpaceSide">
+                  <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                     <div class="noSpaceSide">
                       <div class="col-lg-1 sideBox stakeholderColor stakeholderBox">
                         <div class="verticalAlign">
@@ -1162,7 +1112,7 @@
 
 
                   <div class="col-md-12 noSpaceSide ">
-                    <div class="col-lg-12 wrapper noSpaceSide">
+                    <div class="col-lg-12 wrapper noSpaceSide" style="background-color:#f5f5f5">
                       <a class="btn btn-warning btn-lg btn-block" href="<?= base_url() ?>notification-board/list/<?php echo $project[0]->project_id; ?>">
                         <i class="glyphicon glyphicon-blackboard"></i>
                         <?= $this->lang->line('notification-board') ?>

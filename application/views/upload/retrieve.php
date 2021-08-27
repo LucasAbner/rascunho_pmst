@@ -17,7 +17,7 @@ $images = $this->db->get('upload')->result_array();
         <div class="col-lg-12">
             <?php if ($images == null) {
             ?>
-                <p style="text-align: center;">No Upload Images!</p>
+                <!-- <p style="text-align: center;">No Upload Images!</p> -->
             <?php } else {
             ?>
                 <h3 class="page-header" style="text-align: center;">Upload List</h3>

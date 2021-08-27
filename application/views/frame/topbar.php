@@ -44,8 +44,8 @@
            .title {
              position: absolute;
              padding-top: 12px;
-             left: 42%;
-             right: 54%;
+             left: 5%;
+             /* right: 54%; */
              color: black;
              white-space: nowrap;
              font-size: large;
@@ -56,7 +56,7 @@
          <?php if ($_SESSION['project_id'] != null) { ?>
            <div class="title">
              <p>
-               <strong> <?php echo $_SESSION['project_name'] ?></strong>
+               <strong><?= $this->lang->line('project_title') ?> <?php echo $_SESSION['project_name'] ?></strong>
              </p>
            </div>
 

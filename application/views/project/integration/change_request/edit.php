@@ -38,9 +38,14 @@
 								<input type="hidden" id="project_id" name="project_id" value="<?php echo $project_id; ?>">
 
 								<div class="col-lg-6 form-group">
-									<label for="requester"><?= $this->lang->line('cr_requester') ?> </label>
-									<a class="btn-sm btn-default" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('requester-tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
-									<input id="requester" name="requester" type="text" class="form-control input-md" required="false" value="<?php echo $requester; ?>">
+									<label><?= $this->lang->line('cr_requester') ?></label>
+									<a class="btn-sm btn-default" id="" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('') ?>"><i class="glyphicon glyphicon-comment"></i></a>
+									<select name="requester" size="1" class="form-control" tabindex="1" required>
+										<?php foreach ($stakeholder as $item) { ?>
+											<option <?php if ($item->stakeholder_id == $requester) echo "selected"; ?> value="<?= $item->stakeholder_id; ?>">
+												<?= getStakeholderName($item->stakeholder_id); ?></option>
+										<?php  } ?>
+									</select>
 								</div>
 
 								<div class="col-lg-6 form-group">

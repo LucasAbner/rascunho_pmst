@@ -33,15 +33,17 @@
 							<form method="POST" action="<?php echo base_url('integration/work-performance-reports/insert/'); ?><?php echo $project_id; ?>">
 								<input type="hidden" id="project_id" name="project_id" value="<?php echo $project_id; ?>">
 
-
-								<div class=" col-lg-6 form-group">
-									<label for="responsible"><?= $this->lang->line('wpr_responsible') ?></label>
-									<span class="wpr_1">2000</span><?= $this->lang->line('character') ?>
-									<a class="btn-sm btn-default" id="wpr_tp_1" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('wpr_responsible_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
-									<div>
-									<input id="wpr_txt_1" type="text" name="responsible" class="form-control input-md" onkeyup = "limite_textarea(this.value, 'wpr_1')" maxlength="2000" oninput="eylem(this, this.value)" required="false">
+								<div class="col-lg-6 form-group">
+										<label><?= $this->lang->line('wpr_responsible') ?></label>
+										<a class="btn-sm btn-default" id="wpr_tp_1" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('wpr_responsible_tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
+										<select name="responsible" size="1" class="form-control" tabindex="1" required>
+										<option selected="selected" disabled="disabled" value=""> Select </option>
+											<?php foreach ($stakeholder as $item) { ?>
+												<option value="<?= $item->stakeholder_id; ?>">
+													<?=  getStakeholderName($item->stakeholder_id); ?></option>
+											<?php  } ?>
+										</select>
 									</div>
-								</div>
 
 								<div class=" col-lg-3 form-group">
 									<label for="date"><?= $this->lang->line('wpr_date') ?></label>

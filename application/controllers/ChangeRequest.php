@@ -15,6 +15,7 @@ class ChangeRequest extends CI_Controller
 		$this->load->model('Change_request_model');
 		$this->load->model('log_model');
 		$this->load->helper('log_activity');
+		$this->load->model('Stakeholder_model');
 
 
 		$this->lang->load('btn', 'english');
@@ -37,6 +38,7 @@ class ChangeRequest extends CI_Controller
 
 	public function new($project_id)
 	{
+		$dado['stakeholder'] = $this->Stakeholder_model->getAll($_SESSION['project_id']);
 		$idusuario = $_SESSION['user_id'];
 		$this->db->where('user_id', $idusuario);
 		$this->db->where('project_id', $project_id);
@@ -55,6 +57,7 @@ class ChangeRequest extends CI_Controller
 
 	public function edit($project_id)
 	{
+		$query['stakeholder'] = $this->Stakeholder_model->getAll($_SESSION['project_id']);
 		$query['change_request'] = $this->Change_request_model->get($project_id);
 
 		$this->load->view('frame/header_view');

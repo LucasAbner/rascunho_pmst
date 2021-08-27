@@ -28,7 +28,7 @@
             <div class="panel-body">
               <h1 class="page-header">
 
-                <?= $this->lang->line('fr_title')  ?>
+                <?= $this->lang->line('fr-title')  ?>
 
               </h1>
             

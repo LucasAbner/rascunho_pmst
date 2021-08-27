@@ -32,11 +32,17 @@
 
               <form method="POST" action="<?php echo base_url('integration/change-request/insert/'); ?><?php echo $project_id; ?>">
 
-                <div class=" col-lg-6 form-group">
-                  <label for="requester"><?= $this->lang->line('cr_requester') ?> </label>
-                  <a class="btn-sm btn-default" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('requester-tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
-                  <input id="requester" name="requester" type="text" class="form-control input-md" required="false">
-                </div>
+                <div class="col-lg-6 form-group">
+										<label><?= $this->lang->line('cr_requester') ?></label>
+										<a class="btn-sm btn-default" id="" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('') ?>"><i class="glyphicon glyphicon-comment"></i></a>
+										<select name="requester" size="1" class="form-control" tabindex="1" required>
+										<option selected="selected" disabled="disabled" value=""> Select </option>
+											<?php foreach ($stakeholder as $item) { ?>
+												<option value="<?= $item->stakeholder_id; ?>">
+													<?=  getStakeholderName($item->stakeholder_id); ?></option>
+											<?php  } ?>
+										</select>
+									</div>
 
                 <div class=" col-lg-6 form-group">
                   <label for="number_id"><?= $this->lang->line('cr_number_id') ?> </label>
@@ -44,30 +50,30 @@
                   <input id="number_id" name="number_id" type="number" class="form-control input-md" required="false" style="width:1">
                 </div>
 
-                <div class="col-lg-3 form-group">
+                <div class="col-lg-4 form-group">
                   <label for="type"><?= $this->lang->line('cr_type') ?> </label>
                   <a class="btn-sm btn-default" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('type-tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
                   <select class="form-control" id="type" name="type">
-                    <option value="Corrective Action"><?= $this->lang->line('type_change-corrective') ?></option>
-                    <option value="Preventive Action"><?= $this->lang->line('type_change-preventive') ?></option>
-                    <option value="Defect Repair"><?= $this->lang->line('type_change-defect') ?></option>
-                    <option value="Update"><?= $this->lang->line('type_change-update') ?></option>
+                    <option value="Corrective Action"><?= $this->lang->line('type_change_corrective') ?></option>
+                    <option value="Preventive Action"><?= $this->lang->line('type_change_preventive') ?></option>
+                    <option value="Defect Repair"><?= $this->lang->line('type_change_defect') ?></option>
+                    <option value="Update"><?= $this->lang->line('type_change_update') ?></option>
                   </select>
                 </div>
                
-								<div class=" col-lg-3 form-group">
+								<div class=" col-lg-4 form-group">
 									<label for="status"><?= $this->lang->line('cr_status') ?> </label>
 									<a class="btn-sm btn-default" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('status-tp') ?>"><i class="glyphicon glyphicon-comment"></i></a>
 									<select class="form-control" id="status" name="status">
-										<option value="Under Analysis"><?= $this->lang->line('type_situation-analysis') ?></option>
-										<option value="Approved"><?= $this->lang->line('type_situation-approved') ?></option>
-										<option value="Rejected"><?= $this->lang->line('type_situation-rejected') ?></option>
-										<option value="Canceled"><?= $this->lang->line('type_situation-canceled') ?></option>
-										<option value="Suspended"><?= $this->lang->line('type_situation-suspended') ?></option>
+										<option value="Under Analysis"><?= $this->lang->line('type_situation_analysis') ?></option>
+										<option value="Approved"><?= $this->lang->line('type_situation_approved') ?></option>
+										<option value="Rejected"><?= $this->lang->line('type_situation_rejected') ?></option>
+										<option value="Canceled"><?= $this->lang->line('type_situation_canceled') ?></option>
+										<option value="Suspended"><?= $this->lang->line('type_situation_suspended') ?></option>
 									</select>
 								</div>
 
-                <div class="col-lg-3 form-group">
+                <div class="col-lg-2 form-group">
                   <label><?= $this->lang->line('cr_request_date') ?></label>
                   <div class="input-group">
                     <input class="form-control input-md" id="request_date" placeholder="YYYY/MM/DD" type="date" name="request_date" />
@@ -75,7 +81,7 @@
                 </div>
 
 
-								<div class="col-lg-3 form-group">
+								<div class="col-lg-2 form-group">
 									<label><?= $this->lang->line('cr_committee_date') ?></label>
 									<div class="input-group">
 										<input class="form-control input-md" id="committee_date" placeholder="YYYY/MM/DD" type="date" name="committee_date" />

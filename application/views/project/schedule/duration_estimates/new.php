@@ -50,10 +50,10 @@
 										<label><?= $this->lang->line('ade_activity_name') ?></label>
 										<a class="btn-sm btn-default" id="al_tp_2" data-toggle="tooltip" data-placement="right" title="<?= $this->lang->line('') ?>"><i class="glyphicon glyphicon-comment"></i></a>
 										<select name="activity_id" size="1" class="form-control" tabindex="1" required>
-										<option selected="selected" disabled="disabled" value=""> Selecione </option>
+										<option selected="selected" disabled="disabled" value=""> Select </option>
 											<?php foreach ($activity as $item) { ?>
 												<option value="<?= $item->id; ?>">
-													<?= $item->id; ?></option>
+													<?=  getActivityName($item->id); ?></option>
 											<?php  } ?>
 										</select>
 									</div>

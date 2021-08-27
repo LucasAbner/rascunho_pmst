@@ -37,7 +37,7 @@
 					
 
 					.elasticteste2 {
-						height: 85px;
+						height: 35px;
 						/* min-width: 120px; */
 						/* outline: 0; */
 						resize: none;
@@ -104,13 +104,13 @@
 											</div>
 
 											<div class="panel-body">
-												<div class="col-sm-4 form-group" style="min-height: 20px;">
+												<div class="col-sm-3 form-group" style="min-height: 20px;">
 													<div>
 														<label for="">Items to Check</label>
 													</div>
 												</div>
 
-												<div class="col-sm-5 form-group comments">
+												<div class="col-sm-6 form-group comments">
 													<div>
 														<label for="">Comments</label>
 													</div>

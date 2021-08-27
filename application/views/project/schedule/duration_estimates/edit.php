@@ -42,7 +42,7 @@
 									<div class="col-lg-12 form-group">
 										<label for="name"><?= $this->lang->line('ade_activity_name') ?></label>
 										<div>
-											<input disabled id="name_text" name="activity_id" type="text" class="form-control input-md" required="false" value="<?php echo $activity_id; ?>" disabled>
+											<input disabled id="name_text" name="activity_id" type="text" class="form-control input-md" required="false" value="<?php echo getActivityName($activity_id); ?>" disabled>
 										</div>
 									</div>
 

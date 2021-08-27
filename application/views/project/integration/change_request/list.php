@@ -36,7 +36,6 @@
 									<button class="btn btn-info btn-lg glyphicon-plus" onclick="window.location.href='<?php echo base_url() ?>integration/change-request/new/<?php echo $project_id ?>'"> <?= $this->lang->line('btn-new') ?> <?= $this->lang->line('change_request-btn') ?></button>
 								</div>
 							</div>
-
 							<br><br>
 							<div class="row">
 								<div class="col-lg-12">
@@ -63,7 +62,7 @@
 													<tr dados='<?= json_encode($cr); ?>'>
 														<td class="moreInformationTable"></td>
 														<td><?php echo $cr->number_id; ?></td>
-														<td><?php echo $cr->requester; ?></td>
+														<td><?php echo getStakeholderName($cr->requester) ?></td>
 														<td><?php echo $cr->request_date; ?></td>
 														<td><?php echo $cr->type; ?></td>
 														<td><?php echo $cr->status; ?></td>

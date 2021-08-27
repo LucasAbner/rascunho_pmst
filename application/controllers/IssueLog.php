@@ -26,6 +26,7 @@ class IssueLog extends CI_Controller
 		$this->load->model('log_model');
 		$this->load->model('Issues_record_stakeholder_model');
 		$this->load->helper('log_activity');
+		$this->load->model('Stakeholder_model');
 	}
 
 	public function list($project_id)
@@ -40,6 +41,7 @@ class IssueLog extends CI_Controller
 
 	public function new($project_id)
 	{
+		$query['stakeholder'] = $this->Stakeholder_model->getAll($_SESSION['project_id']);
 		$idusuario = $_SESSION['user_id'];
 		$this->db->where('user_id', $idusuario);
 		$this->db->where('project_id', $_SESSION['project_id']);
@@ -81,6 +83,7 @@ class IssueLog extends CI_Controller
 
 	public function edit($issues_record_id)
 	{
+		$query['stakeholder'] = $this->Stakeholder_model->getAll($_SESSION['project_id']);
 		//query = array de objetos
 		//issues_record = objeto do array query
 		$query['issues_record'] = $this->Issues_record_model->get($issues_record_id);
